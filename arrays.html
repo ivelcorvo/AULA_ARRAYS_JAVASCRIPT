@@ -23,39 +23,38 @@
       <div class="relative p-8 md:p-10 lg:p-12">
 
         <!-- Corpo: texto + “tela” de preview -->
-        <div class="grid gap-8 lg:grid-cols-2 items-center">
+        <div class="grid gap-8 lg:grid-cols-3 items-center">
           
-          <!-- Lado esquerdo: detalhes -->
+          
           <div class="space-y-4 text-sm md:text-base text-slate-300">
             <h2 class="text-lg font-semibold text-slate-100">
-              Destaques
-            </h2>
-            
-
+              Manipulando ARRAYS
+            </h2>            
             <p class="pt-2 text-xs text-slate-500">
-              Dica: você pode trocar este texto por uma explicação técnica, descrição de funcionalidades,
-              lista de tópicos de uma aula, etc.
+              Para ver a prática aperte F12 ou Ctrl+Shift+i
             </p>
           </div>
 
-          <div class="relative rounded-2xl border border-slate-800 bg-slate-950/80 shadow-xl overflow-hidden">
+          <div class="relative col-span-2  rounded-2xl border border-slate-800 bg-slate-950/80 shadow-xl">
             <!-- Conteúdo da “tela” (substitua pelo que quiser) -->
             <div class="p-4 md:p-6 lg:p-8">
-              <div class="aspect-video w-full rounded-xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 flex items-center justify-center">
+              <div class="aspect-video w-full rounded-xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 flex items-center justify-center overflow-y-auto">
 
                 
-                <!-- Exemplo: placeholder de vídeo/aplicação -->
-                <div class="text-center space-y-2">
+                
+                <div class="text-center space-y-2 shrink-0">
                   <div class="text-[0.7rem] uppercase tracking-[0.25em] text-slate-400">
-                    Área de Demonstração
+                    ARRAYS
                   </div>
                   <p class="text-sm md:text-base text-slate-100">
-                    Coloque aqui seu vídeo, app em iframe, gráfico, screenshot, etc.
+                    ARRAYS
                   </p>
                   <p class="text-xs text-slate-500">
-                    Substitua este bloco pelo conteúdo que você quer exibir.
+                    ARRAYS
                   </p>
                 </div>
+
+       
 
               </div>
             </div>
@@ -79,12 +78,246 @@
   </script>
 
   <script>
-  // ################  
+
+    const enunciado = (titulo)=>{
+      console.log("----------------------------------");
+      console.log(titulo);
+      console.log("----------------------------------");
+    }
+
+  // ######################################################################################################
   // #### ARRAYS ####
-  // ################  
+  // ######################################################################################################
   
-  // #### MANIPULANDO ARRAYS ####
-  
+  // ######################################################################################################
+  // #### MANIPULANDO ARRAYS | SLICE ####
+    enunciado("MANIPULANDO ARRAYS | SLICE");
+
+    const numeros = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+    const parte1 = numeros.slice(4,8); // pega do index 1 até antes do que colocou no ultimo parametro
+    console.log("parte1",parte1); // [50,.., 80]
+
+    const ultimos = numeros.slice(-4); // últimos dois
+    console.log("ultimos",ultimos); // [70,...]
+
+    console.log("numeros", numeros); // original 
+
+  // ######################################################################################################
+  // #### MANIPULANDO ARRAYS | CONCAT ####
+    enunciado("MANIPULANDO ARRAYS | CONCAT");
+
+    const a = [1, 2, 3];
+    const b = [4, 5, 6];
+
+    const resultado = a.concat(b);
+    console.log(resultado); // [1, 2, 3, 4, 5, 6]
+
+    const comExtras = a.concat(b, 7, 8);
+    console.log(comExtras); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+  // ######################################################################################################
+  // #### MANIPULANDO ARRAYS | SPLICE #### Ele serve para remover, inserir ou substituir valores.
+    enunciado("MANIPULANDO ARRAYS | SPLICE");
+
+    const letras = ["A", "B", "C", "D", "E"];  
+    // remove 2 itens a partir do índice 1
+    const removidos = letras.splice(1, 2);
+
+    console.log("letras",letras);       // ["A", "D", "E"]
+    console.log("removidos",removidos); // ["B", "C"]  <- itens retirados
+
+  // ######################################################################################################
+  // #### MANIPULANDO ARRAYS | FILTER #### serve para filtrar elementos de um array, retornando um novo array apenas com os itens que satisfazem a condição (NÃO ALTERA O ARRAY ORIGINAL)
+    enunciado("MANIPULANDO ARRAYS | FILTER");
+
+    const num = [5, 12, 8, 20, 3];
+
+    const maiorQue10 = num.filter(n => n > 10);
+
+    console.log("numeros maior que 10",maiorQue10); // [12, 20]
+    console.log("numeros",num);                     // original permanece igual
+
+    //-----------------------------------------------------------------------------------
+
+    const frutas = ["maçã", "banana", "uva", "laranja"];    
+    const semUva = frutas.filter(f => f !== "uva");
+
+    console.log(semUva); // ["maçã", "banana", "laranja"]
+
+    //-----------------------------------------------------------------------------------
+
+    const produtos  = ["computador", "mouse", "monitor", "cabo hdmi", "cabide"];
+    const busca1    = produtos.filter(p => p.includes("cab"));
+    const busca2    = produtos.filter(p => p.includes("comp"));
+
+    console.log("busca1",busca1); // ["cabo hdmi", "cabide"]
+    console.log("busca2",busca2);
+
+  // ######################################################################################################
+  // #### MANIPULANDO ARRAYS | MAP ####  map() percorre os itens de um array e retorna um novo array transformando cada elemento. (NÃO ALTERA O ARRAY ORIGINAL)
+    enunciado("MANIPULANDO ARRAYS | MAP");
+
+    const valores = [10, 20, 30];
+    const texto   = valores.map(v => `R$ ${v},00`);
+
+    console.log(texto); // ["R$ 10,00", "R$ 20,00", "R$ 30,00"]
+
+    //----------------------------------------------------------------------------------- OBJETOS
+
+    const usuarios = [
+      { nome: "Ana", idade: 20 },
+      { nome: "Bruno", idade: 25 },
+      { nome: "Carlos", idade: 30 }
+    ];
+
+    const nomes  = usuarios.map(u => u.nome);
+    const idades = usuarios.map(u => u.idade);
+
+    console.log("nomes",nomes); // ["Ana", "Bruno", "Carlos"]
+    console.log("idades",idades);
+
+    //-----------------------------------------------------------------------------------
+
+    const semDesconto = [
+      { nome: "TV", preco: 2000 },
+      { nome: "Mouse", preco: 50 }
+    ];
+
+    const comDesconto = semDesconto.map(p => ({
+      nome: p.nome,
+      preco: p.preco * 0.9   // menos 10%
+    }));
+
+    console.log("produtos sem desconto ",semDesconto);
+    console.log("produtos com desconto ",comDesconto);
+    // [{nome:"TV", preco:1800}, {nome:"Mouse", preco:45}]
+
+    //-----------------------------------------------------------------------------------
+
+    const prod = [
+      { nome: "TV", preco: 2500, categoria: "eletronico" },
+      { nome: "Arroz", preco: 20, categoria: "alimento" },
+      { nome: "PlayStation", preco: 4500, categoria: "eletronico" },
+      { nome: "Detergente", preco: 5, categoria: "limpeza" }
+    ];
+
+    const listaFinal = prod.map(p => {
+      const imposto = p.categoria === "eletronico" ? p.preco * 0.2 : p.preco * 0.05;
+      const desconto = p.preco > 1000 ? p.preco * 0.1 : 0;
+
+      return {
+        nome: p.nome.toUpperCase(),
+        precoOriginal: p.preco,
+        precoFinal: (p.preco + imposto - desconto).toFixed(2),
+        categoria: p.categoria,
+      };
+    });
+
+    console.log("listaFinal",listaFinal);
+
+    //-----------------------------------------------------------------------------------
+
+    const pedidos = [
+      {
+        id: 1,
+        cliente: "João",
+        itens: [
+          { produto: "Mouse", qtd: 2, preco: 50 },
+          { produto: "Teclado", qtd: 1, preco: 120 }
+        ]
+      },
+      {
+        id: 2,
+        cliente: "Maria",
+        itens: [
+          { produto: "Cadeira Gamer", qtd: 1, preco: 900 },
+          { produto: "Headset", qtd: 1, preco: 150 }
+        ]
+      }
+    ];
+
+    const resumo = pedidos.map(p => ({
+      id: p.id,
+      cliente: p.cliente,
+      total: p.itens.map(i => i.qtd * i.preco).reduce((t, v) => t + v),
+      itens: p.itens.length
+    }));
+
+    console.log("resumo",resumo);
+
+  // ######################################################################################################
+  // #### MANIPULANDO ARRAYS | REDUCE ####  O reduce serve para reduzir um array a um único valor. Pode virar: soma, média, objeto, string, contagem, agrupamento, transformação, etc.  
+  // array.reduce((acumulador, valorAtual, indice, arrayCompleto) => { ... }, valorInicial);
+    enunciado("MANIPULANDO ARRAYS | REDUCE");
+
+    //-----------------------------------------------------------------------------------
+
+    const produtos1 = [
+      { nome: "Mouse", preco: 50 },
+      { nome: "Teclado", preco: 120 },
+      { nome: "Headset", preco: 200 }
+    ];
+
+    const total = produtos1.reduce((acc, p) => acc + p.preco, 0);
+
+    console.log("total",total); // 370
+
+    //-----------------------------------------------------------------------------------
+
+    const notas = [7, 8, 9, 10];
+
+    const media = notas.reduce((acc, n, i, arr) => {
+      acc += n;
+      return i === arr.length - 1 ? acc / arr.length : acc;
+    }, 0);    
+
+    console.log("media",media); // 8.5
+    
+    //-----------------------------------------------------------------------------------
+
+    const carrinho = [
+      { produto: "TV", preco: 2500, qtd: 1 },
+      { produto: "Mouse", preco: 50, qtd: 2 },
+      { produto: "Teclado", preco: 120, qtd: 1 },
+      { produto: "Cabo HDMI", preco: 30, qtd: 3 }
+    ];
+
+    const res = carrinho.reduce((acc, item) => {
+      const subtotal = item.preco * item.qtd;   // preco total do item
+
+      acc.total += subtotal;          // soma total geral
+      acc.itens += item.qtd;          // soma de todos os produtos
+
+      // se subtotal maior que 1000, acumula desconto
+      if(subtotal > 1000){
+        acc.desconto += subtotal * 0.10; // 10% de desconto
+      }
+
+      return acc; // retorna o acumulador atualizado
+    }, {
+      total: 0,
+      itens: 0,
+      desconto: 0
+    });
+
+    console.log("total carrinho",res);
+
+  // ######################################################################################################
+  // #### MANIPULANDO ARRAYS | FOREACH ####  O forEach() percorre cada item do array e executa uma função para cada elemento. Ele não retorna nada (retorna undefined). Serve para executar ações e não para criar novos arrays.  
+  // array.forEach((item, indice, arrayCompleto) => { ... });
+    enunciado("MANIPULANDO ARRAYS | FOREACH");
+
+    const produt = [
+      { nome:"Mouse", preco:50 },
+      { nome:"Teclado", preco:120 },
+      { nome:"Monitor", preco:900 }
+    ];
+
+    produt.forEach(p => {
+      console.log(`${p.nome} - R$${p.preco}`);
+    });
+
   </script>
 
 </body>
